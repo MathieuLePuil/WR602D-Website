@@ -1,9 +1,7 @@
 <?php
-// tests/Entity/UserTest.php
 namespace App\Tests\Entity;
 
 use App\Entity\Subscription;
-use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 
 class SubscriptionTest extends TestCase
