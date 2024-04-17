@@ -52,10 +52,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $pdfs;
 
     #[ORM\ManyToOne]
-    private ?Subscription $subscription_id = null;
+    private ?Subscription $subscription = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $subscription_end_at = null;
+
+    #[ORM\ManyToOne]
+    private ?Subscription $suscription = null;
 
     public function __construct()
     {
@@ -215,14 +218,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getSubscriptionId(): ?Subscription
+    public function getSubscription(): ?Subscription
     {
-        return $this->subscription_id;
+        return $this->subscription;
     }
 
-    public function setSubscriptionId(?Subscription $subscription_id): static
+    public function setSubscription(?Subscription $subscription): static
     {
-        $this->subscription_id = $subscription_id;
+        $this->subscription = $subscription;
 
         return $this;
     }
@@ -235,6 +238,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setSubscriptionEndAt(?\DateTimeImmutable $subscription_end_at): static
     {
         $this->subscription_end_at = $subscription_end_at;
+
+        return $this;
+    }
+
+    public function getSuscription(): ?Subscription
+    {
+        return $this->suscription;
+    }
+
+    public function setSuscription(?Subscription $suscription): static
+    {
+        $this->suscription = $suscription;
 
         return $this;
     }
