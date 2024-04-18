@@ -22,6 +22,10 @@ class GeneratePdfController extends AbstractController
     #[Route('/generate-pdf', name: 'generate_pdf', methods: ['GET', 'POST'])]
     public function generatePdf(Request $request): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
+
         $form = $this->createFormBuilder()
             ->add('url', null, ['required' => true])
             ->add('submit', SubmitType::class, ['label' => 'Générer PDF'])
