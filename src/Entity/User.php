@@ -27,6 +27,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
+    private ?string $plainPassword = null;
+
     /**
      * @var string The hashed password
      */
@@ -56,9 +58,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $subscription_end_at = null;
-
-    #[ORM\ManyToOne]
-    private ?Subscription $suscription = null;
 
     public function __construct()
     {
@@ -242,15 +241,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getSuscription(): ?Subscription
+    public function getPlainPassword(): ?string
     {
-        return $this->suscription;
+        return $this->plainPassword;
     }
 
-    public function setSuscription(?Subscription $suscription): static
+    public function setPlainPassword(?string $plainPassword): void
     {
-        $this->suscription = $suscription;
+        $this->plainPassword = $plainPassword;
+    }
 
-        return $this;
+    public function initializeCreatedAt(): void
+    {
+        if ($this->created_at === null) {
+            $this->created_at = new \DateTimeImmutable();
+        }
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function updateUpdatedAt(): void
+    {
+        $this->updated_at = new \DateTimeImmutable();
     }
 }
