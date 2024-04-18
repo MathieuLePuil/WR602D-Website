@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Generate PDF{% endblock %}
+
+{% block body %}
+    <h1>Generate PDF</h1>
+
+    {% if pdf_url %}
+        <p>PDF generated successfully. You can download it <a href="{{ pdf_url }}" target="_blank">here</a>.</p>
+    {% endif %}
+
+    {{ form(form) }}
+
+{% endblock %}
