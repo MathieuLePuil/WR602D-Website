@@ -43,7 +43,6 @@ class GeneratePdfController extends AbstractController
             ]);
         }
 
-        // Ajout d'une instruction return pour gérer le cas où $pdfUrl est null
         return $this->render('pdf/generate_pdf.html.twig', [
             'form' => $form->createView(),
             'pdf_url' => null

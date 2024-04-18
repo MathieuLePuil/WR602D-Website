@@ -24,12 +24,10 @@ class GotenbergService
                 ]
             );
 
-            // Assuming the response will always be successful and contain the 'pdf_url'
             $data = $response->toArray();
 
             return $data['pdf_url'] ?? null;
         } catch (\Exception $e) {
-            // Log the exception or handle it as per your requirement
             return null;
         }
     }
