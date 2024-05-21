@@ -22,6 +22,9 @@ class Pdf
     #[ORM\ManyToOne]
     private ?User $user = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $Link = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class Pdf
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getLink(): ?string
+    {
+        return $this->Link;
+    }
+
+    public function setLink(string $Link): static
+    {
+        $this->Link = $Link;
 
         return $this;
     }
