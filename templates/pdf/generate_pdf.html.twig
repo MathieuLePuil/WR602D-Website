@@ -13,6 +13,8 @@
         <p>PDF generated successfully. You can download it <a href="{{ pdf_url }}" target="_blank">here</a>.</p>
     {% endif %}
 
+   <p>Restant :</p>  {{ count }}
+
     {{ form(form) }}
 
 {% endblock %}

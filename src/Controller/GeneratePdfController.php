@@ -43,13 +43,13 @@ class GeneratePdfController extends AbstractController
         $form->handleRequest($request);
 
         $pdfUrl = null;
+        $user = $this->getUser();
+        $pdfLimit = $user->getSubscription()->getPdfLimit();
+        $pdfCountToday = $this->pdfRepository->countUserPdfsForToday($user);
+        $count = $pdfLimit - $pdfCountToday;
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $this->getUser();
 
-            $pdfLimit = $user->getSubscription()->getPdfLimit();
-
-            $pdfCountToday = $this->pdfRepository->countUserPdfsForToday($user);
             if ($pdfCountToday >= $pdfLimit) {
                 $this->addFlash('error', 'Vous avez atteint la limite de PDFs pour aujourd\'hui');
                 return $this->redirectToRoute('generate_pdf');
@@ -73,7 +73,8 @@ class GeneratePdfController extends AbstractController
 
         return $this->render('pdf/generate_pdf.html.twig', [
             'form' => $form->createView(),
-            'pdf_url' => $pdfUrl
+            'pdf_url' => $pdfUrl,
+            'count' => $count,
         ]);
 
     }
