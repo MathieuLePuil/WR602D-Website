@@ -1,0 +1,19 @@
+{# templates/history/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Historique{% endblock %}
+
+{% block body %}
+    <h1>Historique des PDFs</h1>
+
+    {% if pdfs is empty %}
+        <p>Vous n'avez aucun PDF.</p>
+    {% else %}
+        <ul>
+            {% for pdf in pdfs %}
+                <li>{{ pdf.title }} - {{ pdf.createdAt|date('d/m/Y H:i') }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
