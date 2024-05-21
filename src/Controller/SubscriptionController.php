@@ -50,4 +50,23 @@ class SubscriptionController extends AbstractController
 
         return $this->redirectToRoute('app_souscription');
     }
+
+    #[Route('/resilier', name: 'app_resilier')]
+    public function cancel(EntityManagerInterface $manager): Response
+    {
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        $user->setSubscription(null);
+        $user->setSubscriptionEndAt(null);
+
+        $manager->persist($user);
+        $manager->flush();
+
+        $this->addFlash('success', 'Votre souscription a été annulée.');
+
+        return $this->redirectToRoute('app_souscription');
+    }
 }
