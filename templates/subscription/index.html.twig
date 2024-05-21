@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SubscriptionController!{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        {{ message }}
+    {% endfor %}
+
+    <a href="{{ path('app_souscription_subscription', {'sub': 1}) }}">Formule Basique</a> <br> <br>
+    <a href="{{ path('app_souscription_subscription', {'sub': 2}) }}">Formule Premium</a> <br> <br>
+    <a href="{{ path('app_souscription_subscription', {'sub': 3}) }}">Formule Entreprise</a> <br> <br>
+
+{% endblock %}
