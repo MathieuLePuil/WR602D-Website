@@ -22,7 +22,7 @@ class GeneratePdfController extends AbstractController
     #[Route('/generate-pdf', name: 'generate_pdf', methods: ['GET', 'POST'])]
     public function generatePdf(Request $request): Response
     {
-        if ($this->getUser()) {
+        if (!$this->getUser()) {
             return $this->redirectToRoute('app_home');
         }
 
