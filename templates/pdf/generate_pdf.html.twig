@@ -5,9 +5,15 @@
 {% block body %}
     <h1>Generate PDF</h1>
 
+    {% for message in app.flashes('error') %}
+        {{ message }}
+    {% endfor %}
+
     {% if pdf_url %}
         <p>PDF generated successfully. You can download it <a href="{{ pdf_url }}" target="_blank">here</a>.</p>
     {% endif %}
+
+   <p>Restant :</p>  {{ count }}
 
     {{ form(form) }}
 

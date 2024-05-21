@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Pdf;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -45,4 +46,27 @@ class PdfRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+    public function countUserPdfsForToday(User $user): int
+    {
+        $today = (new \DateTimeImmutable())->setTime(0, 0);
+
+        return $this->createQueryBuilder('p')
+            ->select('count(p.id)')
+            ->where('p.user = :user')
+            ->andWhere('p.created_at >= :today')
+            ->setParameter('user', $user)
+            ->setParameter('today', $today)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function findByUserOrderedByDate(User $user): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.user = :user')
+            ->setParameter('user', $user)
+            ->orderBy('p.created_at', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }
