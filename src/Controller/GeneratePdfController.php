@@ -36,8 +36,20 @@ class GeneratePdfController extends AbstractController
         }
 
         $form = $this->createFormBuilder()
-            ->add('url', null, ['required' => true])
-            ->add('submit', SubmitType::class, ['label' => 'Générer PDF'])
+            ->add('url', null, [
+                'required' => true,
+                'label' => 'URL de la page',
+                'attr' => [
+                    'placeholder' => 'URL de la page',
+                    'class' => 'px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600 mt-[5px]'
+                ],
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Générer PDF',
+                'attr' => [
+                    'class' => 'bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none w-[200px]'
+                ]
+            ])
             ->getForm();
 
         $form->handleRequest($request);
@@ -51,7 +63,7 @@ class GeneratePdfController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             if ($pdfCountToday >= $pdfLimit) {
-                $this->addFlash('error', 'Vous avez atteint la limite de PDFs pour aujourd\'hui');
+                $this->addFlash('error', 'Vous avez atteint la limite de PDF pour aujourd\'hui');
                 return $this->redirectToRoute('generate_pdf');
             }
 
@@ -69,6 +81,8 @@ class GeneratePdfController extends AbstractController
 
             $manager->persist($pdf);
             $manager->flush();
+
+            $this->addFlash('success', 'PDF généré avec succès !');
         }
 
         return $this->render('pdf/generate_pdf.html.twig', [
