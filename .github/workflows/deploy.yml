@@ -26,6 +26,7 @@ jobs:
           echo "APP_ENV=prod" > .env.local
 
           npm install
+          npm run build
 
           composer install
           composer upgrade
