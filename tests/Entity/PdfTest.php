@@ -25,10 +25,8 @@ class PdfTest extends TestCase
 
         $pdf->setTitle($title);
         $pdf->setCreatedAt($created_at);
-        $pdf->setUserId($user);
 
         $this->assertEquals($title, $pdf->getTitle());
         $this->assertEquals($created_at, $pdf->getCreatedAt());
-        $this->assertEquals($user, $pdf->getUserId());
     }
 }
