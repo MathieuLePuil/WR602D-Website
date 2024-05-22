@@ -65,13 +65,23 @@ class SecurityController extends AbstractController
             if ($form->isValid()) {
                 $user = $form->getData();
 
+                if ($user->getPlainPassword() !== $form->get('plainPassword')->getData()) {
+                    $this->addFlash(
+                        'error',
+                        'Les deux mots de passe ne correspondent pas.'
+                    );
+                    return $this->render('security/signup.html.twig', [
+                        'form' => $form->createView()
+                    ]);
+                }
+
                 $hashedPassword = $passwordHasher->hashPassword($user, $user->getPlainPassword());
                 $user->setPassword($hashedPassword);
                 $user->setCreatedAt(new \DateTimeImmutable(null, new \DateTimeZone('Europe/Paris')));
                 $user->setUpdatedAt(new \DateTimeImmutable(null, new \DateTimeZone('Europe/Paris')));
                 $this->addFlash(
                     'success',
-                    'Your account has been created. You can now log in.'
+                    'Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter.'
                 );
 
                 $manager->persist($user);

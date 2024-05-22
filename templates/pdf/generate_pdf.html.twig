@@ -135,13 +135,23 @@
 {% block javascripts %}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('cancelButton').addEventListener('click', function() {
-                document.getElementById('form_url').value = '';
-                console.log('Champ vide');
-            });
-            document.getElementById('closeButton').addEventListener('click', function() {
-                document.getElementById('flashMessage').style.display = 'none';
-            });
+            var cancelButton = document.getElementById('cancelButton');
+            var formUrl = document.getElementById('form_url');
+            var closeButton = document.getElementById('closeButton');
+            var flashMessage = document.getElementById('flashMessage');
+
+            if(cancelButton && formUrl) {
+                cancelButton.addEventListener('click', function() {
+                    formUrl.value = '';
+                    console.log('Champ vide');
+                });
+            }
+
+            if(closeButton && flashMessage) {
+                closeButton.addEventListener('click', function() {
+                    flashMessage.style.display = 'none';
+                });
+            }
         });
     </script>
 {% endblock %}

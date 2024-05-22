@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use App\Repository\PdfRepository;
+use Symfony\Component\Validator\Constraints\Url;
+
 
 class GeneratePdfController extends AbstractController
 {
@@ -43,6 +45,11 @@ class GeneratePdfController extends AbstractController
                     'placeholder' => 'URL de la page',
                     'class' => 'px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600 mt-[5px]'
                 ],
+                'constraints' => [
+                    new Url([
+                        'message' => 'Veuillez entrer une URL valide.',
+                    ]),
+                ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Générer PDF',
@@ -51,6 +58,8 @@ class GeneratePdfController extends AbstractController
                 ]
             ])
             ->getForm();
+
+        $errors = $form->getErrors(true);
 
         $form->handleRequest($request);
 
@@ -89,6 +98,7 @@ class GeneratePdfController extends AbstractController
             'form' => $form->createView(),
             'pdf_url' => $pdfUrl,
             'count' => $count,
+            'errors' => $errors,
         ]);
 
     }
