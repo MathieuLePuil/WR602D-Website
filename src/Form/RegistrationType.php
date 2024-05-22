@@ -19,6 +19,7 @@ class RegistrationType extends AbstractType
     {
         $builder
             ->add('firstname', TextType::class, [
+                'label' => 'Prénom',
                 'attr' => [
                     'minlenght' => '2',
                     'maxlenght' => '30',
@@ -33,6 +34,7 @@ class RegistrationType extends AbstractType
                 ]
             ])
             ->add('lastname', TextType::class, [
+                'label' => 'Nom',
                 'attr' => [
                     'minlenght' => '2',
                     'maxlenght' => '50',
@@ -47,6 +49,7 @@ class RegistrationType extends AbstractType
                 ]
             ])
             ->add('email', EmailType::class, [
+                'label' => 'E-mail',
                 'attr' => [
                     'minlenght' => '2',
                     'maxlenght' => '255',
@@ -70,7 +73,7 @@ class RegistrationType extends AbstractType
                     'attr' => [
                         'class' => 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                     ],
-                    'label' => 'Password',
+                    'label' => 'Mot de passe',
                     'label_attr' => [
                         'class' => 'block text-sm font-medium leading-6 text-light-text dark:text-dark-text'
                     ],
@@ -79,7 +82,7 @@ class RegistrationType extends AbstractType
                     'attr' => [
                         'class' => 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                     ],
-                    'label' => 'Confirmation',
+                    'label' => 'Confirmer',
                     'label_attr' => [
                         'class' => 'block text-sm font-medium leading-6 text-light-text dark:text-dark-text'
                     ],
@@ -87,9 +90,9 @@ class RegistrationType extends AbstractType
                 'error_bubbling' => true,
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Sign up',
+                'label' => 'Créer mon compte',
                 'attr' => [
-                    'class' => 'flex w-full justify-center rounded-md bg-light-primary dark:bg-dark-primary px-3 py-1.5 text-sm font-semibold leading-6 text-light-background dark:text-dark-background shadow-sm hover:bg-light-secondary dark:hover:bg-dark-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-4 hover:scale-105 transition-all duration-200 ease'
+                    'class' => 'bg-blue-300 flex w-full justify-center rounded-md bg-light-primary dark:bg-dark-primary px-3 py-1.5 text-sm font-semibold leading-6 text-light-background dark:text-dark-background shadow-sm hover:bg-light-secondary dark:hover:bg-dark-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-4 hover:scale-105 transition-all duration-200 ease'
                 ],
             ])
         ;
