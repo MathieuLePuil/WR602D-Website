@@ -22,7 +22,7 @@ jobs:
           cd WR602D-Website
           git pull
   
-          echo 'DATABASE_URL="mysql://${{ secrets.BASEUSER }}:${{ secrets.BASEPASS }}@localhost:3306/${{ secrets.BASENAME }}?serverVersion=8.0.32&charset=utf8mb4"' >> .env.local
+          echo 'DATABASE_URL="mysql://${{ secrets.BASEUSER }}:${{ secrets.BASEPASS }}@localhost:3306/${{ secrets.BASENAME }}?serverVersion=8.0.32&charset=utf8mb4"' >> .env
           echo "APP_ENV=prod" > .env.local
 
           composer install
