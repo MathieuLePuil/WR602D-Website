@@ -19,7 +19,7 @@ jobs:
         script: |
           cd public_html/travaux/ 
           git clone git@github.com:MathieuLePuil/WR602D-Website.git
-          cd WR602D-website
+          cd WR602D-Website
           git pull
 
           echo "APP_ENV=prod" > .env.local
