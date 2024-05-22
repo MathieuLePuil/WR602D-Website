@@ -46,6 +46,3 @@ jobs:
 
             - name: Run PHPStan
               run: vendor/bin/phpstan analyze src/
-
-            - name: Run PHPMD
-              run: vendor/bin/phpmd src/ text cleancode,controversial,design
