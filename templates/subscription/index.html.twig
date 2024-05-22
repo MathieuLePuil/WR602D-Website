@@ -1,0 +1,206 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Souscrire à un abonnement{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div id="flashMessage" aria-live="assertive" class="z-20 pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6">
+            <div class="flex w-full flex-col items-center space-y-4 sm:items-end">
+                <div class="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                    <div class="p-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div class="ml-3 w-0 flex-1 pt-0.5">
+                                <p class="text-sm font-medium text-gray-900">Succès</p>
+                                <p class="mt-1 text-sm text-gray-500">{{ message }}</p>
+                            </div>
+                            <div class="ml-4 flex flex-shrink-0">
+                                <button id="closeButton" type="button" class="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                    <span class="sr-only">Close</span>
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        <div id="flashMessage" aria-live="assertive" class="z-20 pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6">
+            <div class="flex w-full flex-col items-center space-y-4 sm:items-end">
+                <div class="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                    <div class="p-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke-width="0.1" stroke="currentColor" aria-hidden="true">
+                                    <path
+                                            d="M16.3394 9.32245C16.7434 8.94589 16.7657 8.31312 16.3891 7.90911C16.0126 7.50509 15.3798 7.48283 14.9758 7.85938L12.0497 10.5866L9.32245 7.66048C8.94589 7.25647 8.31312 7.23421 7.90911 7.61076C7.50509 7.98731 7.48283 8.62008 7.85938 9.0241L10.5866 11.9502L7.66048 14.6775C7.25647 15.054 7.23421 15.6868 7.61076 16.0908C7.98731 16.4948 8.62008 16.5171 9.0241 16.1405L11.9502 13.4133L14.6775 16.3394C15.054 16.7434 15.6868 16.7657 16.0908 16.3891C16.4948 16.0126 16.5171 15.3798 16.1405 14.9758L13.4133 12.0497L16.3394 9.32245Z"
+                                            fill="currentColor"
+                                    />
+                                    <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z"
+                                            fill="currentColor"
+                                    />
+                                </svg>
+                            </div>
+                            <div class="ml-3 w-0 flex-1 pt-0.5">
+                                <p class="text-sm font-medium text-gray-900">Erreur</p>
+                                <p class="mt-1 text-sm text-gray-500">{{ message }}</p>
+                            </div>
+                            <div class="ml-4 flex flex-shrink-0">
+                                <button id="closeButton" type="button" class="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                    <span class="sr-only">Close</span>
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <a href="{{ path('app_resilier') }}" class="z-10 logout-button absolute top-0 right-0 p-5 text-gray-300 text-decoration-none hover:underline ease-in duration-200 hover:scale-105">Résilier mon abonnement</a>
+
+    <a href="{{ path('app_home') }}" class="absolute m-5 inline-flex items-center justify-center leading-normal no-underline pb-1 text-black font-sans font-bold text-sm uppercase hover:text-neutral-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neutral-500 transition group">
+        Retourner à l'accueil
+        <svg
+                class="icon icon-tabler icon-tabler-arrow-up-right"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                    d="M17 7l-10 10"></path><path d="M8 7l9 0l0 9"></path>
+        </svg>
+        <span
+                class="absolute bottom-0 left-0 w-full h-0.5 bg-neutral-700 origin-bottom-right transform transition duration-200 ease-out scale-x-0 group-hover:scale-x-100 group-hover:origin-bottom-left"
+        ></span>
+    </a>
+
+    <div class="min-h-screen flex justify-center items-center">
+        <div class="">
+            <div class="text-center font-semibold">
+                <h1 class="text-5xl">
+                    <span>Abonnement</span>
+                    <span class="text-blue-700 tracking-wide">Flexible</span>
+                </h1>
+                <p class="pt-6 text-xl text-gray-400 font-normal w-full px-8 md:w-full">
+                    Choisissez le meilleur abonnement pour vous et<br/> votre équipe.
+                </p>
+            </div>
+            <div class="pt-24 flex flex-row">
+                <div class="w-96 p-8 bg-white text-center rounded-3xl pr-16 shadow-xl">
+                    <h1 class="text-black font-semibold text-2xl">Basique</h1>
+                    <p class="pt-2 tracking-wide">
+                        <span class="text-3xl font-semibold">5€</span>
+                        <span class="text-gray-400 font-medium">/ mois</span>
+                    </p>
+                    <hr class="mt-4 border-1">
+                    <div class="pt-8">
+                        <p class="font-semibold text-gray-400 text-left">
+                            <span class="material-icons align-middle">
+                                done
+                            </span>
+                            <span class="pl-2">
+                                Générez jusqu'à 5 <span class="text-black">PDF</span> par jour
+                            </span>
+                        </p>
+
+                        <a href="{{ path('app_souscription_subscription', {'sub': 1}) }}" class="">
+                            <p class="w-full py-4 bg-blue-600 mt-8 rounded-xl text-white hover:scale-105 ease-in duration-200">
+                                <span class="font-medium">
+                                    Choisir cet abonnement
+                                </span>
+                                <span class="pl-2 material-icons align-middle text-sm">
+                                    east
+                                </span>
+                            </p>
+                        </a>
+                    </div>
+                </div>
+                <!-- Premium Card -->
+                <div class="w-80 p-8 bg-gray-900 text-center rounded-3xl text-white border-4 shadow-xl border-white transform scale-125">
+                    <h1 class="text-white font-semibold text-2xl">Premium</h1>
+                    <p class="pt-2 tracking-wide">
+                        <span class="text-3xl font-semibold">10€</span>
+                        <span class="text-gray-400 font-medium">/ user</span>
+                    </p>
+                    <hr class="mt-4 border-1 border-gray-600">
+                    <div class="pt-8">
+                        <p class="font-semibold text-gray-400 text-left">
+                            <span class="material-icons align-middle">
+                                done
+                            </span>
+                            <span class="pl-2">
+                                Générez jusqu'à 30 <span class="text-white">PDF</span> par jour
+                            </span>
+                        </p>
+
+                        <a href="{{ path('app_souscription_subscription', {'sub': 2}) }}" class="">
+                            <p class="w-full py-4 bg-blue-600 mt-8 rounded-xl text-white hover:scale-105 ease-in duration-200">
+                                <span class="font-medium">
+                                    Choisir cet abonnement
+                                </span>
+                                <span class="pl-2 material-icons align-middle text-sm">
+                                    east
+                                </span>
+                            </p>
+                        </a>
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <p class="bg-blue-700 font-semibold px-4 py-1 rounded-full uppercase text-xs">Populaire</p>
+                    </div>
+                </div>
+                <!-- Entreprise Card -->
+                <div class="w-96 p-8 bg-white text-center rounded-3xl pl-16 shadow-xl">
+                    <h1 class="text-black font-semibold text-2xl">Entreprise</h1>
+                    <p class="pt-2 tracking-wide">
+                        <span class="text-3xl font-semibold">30€</span>
+                        <span class="text-gray-400 font-medium">/ mois</span>
+                    </p>
+                    <hr class="mt-4 border-1">
+                    <div class="pt-8">
+                        <p class="font-semibold text-gray-400 text-left">
+                            <span class="material-icons align-middle">
+                                done
+                            </span>
+                            <span class="pl-2">
+                                Générez jusqu'à 100 <span class="text-black">PDF</span> par jour
+                            </span>
+                        </p>
+
+                        <a href="{{ path('app_souscription_subscription', {'sub': 3}) }}" class="">
+                            <p class="w-full py-4 bg-blue-600 mt-8 rounded-xl text-white hover:scale-105 ease-in duration-200">
+                                <span class="font-medium">
+                                    Choisir cet abonnement
+                                </span>
+                                <span class="pl-2 material-icons align-middle text-sm">
+                                    east
+                                </span>
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
