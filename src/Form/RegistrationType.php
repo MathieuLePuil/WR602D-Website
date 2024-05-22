@@ -21,6 +21,7 @@ class RegistrationType extends AbstractType
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
                 'attr' => [
+                    'id' => 'firstname',
                     'minlenght' => '2',
                     'maxlenght' => '30',
                     'class' => 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
@@ -36,6 +37,7 @@ class RegistrationType extends AbstractType
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
                 'attr' => [
+                    'id' => 'lastname',
                     'minlenght' => '2',
                     'maxlenght' => '50',
                     'class' => 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
@@ -51,6 +53,7 @@ class RegistrationType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'E-mail',
                 'attr' => [
+                    'id' => 'email',
                     'minlenght' => '2',
                     'maxlenght' => '255',
                     'class' => 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
@@ -65,12 +68,14 @@ class RegistrationType extends AbstractType
                 ]
             ])
             ->add('plainPassword', RepeatedType::class, [
+                'invalid_message' => 'Les deux mots de passe ne correspondent pas.',
                 'attr' => [
                     'class' => 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                 ],
                 'type' => PasswordType::class,
                 'first_options' => [
                     'attr' => [
+                        'id' => 'password1',
                         'class' => 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                     ],
                     'label' => 'Mot de passe',
@@ -80,6 +85,7 @@ class RegistrationType extends AbstractType
                 ],
                 'second_options' => [
                     'attr' => [
+                        'id' => 'password2',
                         'class' => 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                     ],
                     'label' => 'Confirmer',
@@ -92,6 +98,7 @@ class RegistrationType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Créer mon compte',
                 'attr' => [
+                    'id' => 'submit',
                     'class' => 'bg-blue-300 flex w-full justify-center rounded-md bg-light-primary dark:bg-dark-primary px-3 py-1.5 text-sm font-semibold leading-6 text-light-background dark:text-dark-background shadow-sm hover:bg-light-secondary dark:hover:bg-dark-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-4 hover:scale-105 transition-all duration-200 ease'
                 ],
             ])
