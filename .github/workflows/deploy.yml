@@ -24,7 +24,7 @@ jobs:
   
           echo 'DATABASE_URL="mysql://${{ secrets.BASEUSER }}:${{ secrets.BASEPASS }}@localhost:3306/${{ secrets.BASENAME }}?serverVersion=8.0.32&charset=utf8mb4"' >> .env
           echo "APP_ENV=prod" > .env.local
-          echo "APP_DEBUG=true" > .env
+          echo "APP_DEBUG=true" >> .env.local
 
           npm install
           npm run build
