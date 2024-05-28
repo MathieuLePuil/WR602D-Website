@@ -24,6 +24,7 @@ jobs:
   
           echo 'DATABASE_URL="mysql://${{ secrets.BASEUSER }}:${{ secrets.BASEPASS }}@localhost:3306/${{ secrets.BASENAME }}?serverVersion=8.0.32&charset=utf8mb4"' >> .env
           echo "APP_ENV=prod" > .env.local
+          echo "APP_DEBUG=true" > .env.local
 
           npm install
           npm run build
@@ -33,3 +34,8 @@ jobs:
           php bin/console d:d:c
           php bin/console d:s:u -f
           php bin/console c:c
+
+          chown -R mmi21b12:mmi21b12 /var/www/WR602D-Website/var/cache/prod/
+          chmod -R 775 /var/www/WR602D-Website/var/cache/prod/
+          php bin/console cache:clear --env=prod
+          
