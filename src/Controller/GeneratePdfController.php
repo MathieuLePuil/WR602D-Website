@@ -34,6 +34,7 @@ class GeneratePdfController extends AbstractController
         }
 
         if (!$this->getUser()->getSubscription()) {
+            $this->addFlash('error', 'Vous devez souscrire à un abonnement pour accéder à cette fonctionnalité');
             return $this->redirectToRoute('app_home');
         }
 
